@@ -1,0 +1,28 @@
+@import '~antd/es/style/themes/default.less';
+.iconsStores svg {
+  width: 140px !important;
+  height: 40px !important;
+  @media (max-width: @screen-xs-min) {
+    width: 100px;
+    height: 32px;
+  }
+}
+
+.footer {
+  :global {
+    background: @background-color;
+    @media (min-width: @screen-xs-max) {
+      .ant-pro-global-footer-links a:nth-child(4) {
+        margin-right: 400px;
+      }
+    }
+    .ant-pro-global-footer-links .anticon svg {
+      width: 32px;
+      height: 32px;
+      @media (max-width: @screen-xs-min) {
+        width: 24px;
+        height: 24px;
+      }
+    }
+  }
+}

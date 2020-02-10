@@ -8,12 +8,22 @@ import { formatMessage } from 'umi-plugin-react/locale';
 import React, { useEffect } from 'react';
 import { Link } from 'umi';
 import { connect } from 'dva';
-import { GithubOutlined } from '@ant-design/icons';
+import {
+  createFromIconfontCN,
+  InstagramFilled,
+  TwitterOutlined,
+  FacebookFilled,
+} from '@ant-design/icons';
 import { Result, Button } from 'antd';
 import Authorized from '@/utils/Authorized';
 import RightContent from '@/components/GlobalHeader/RightContent';
 import { isAntDesignPro, getAuthorityFromRouter } from '@/utils/utils';
+import styles from './BasicLayout.less';
 import logo from '../assets/logo.png';
+
+const IconFont = createFromIconfontCN({
+  scriptUrl: '//at.alicdn.com/t/font_1630942_0x9qkifitskb.js',
+});
 
 const noMatch = (
   <Result
@@ -39,24 +49,43 @@ const menuDataRender = menuList =>
 
 const defaultFooterDom = (
   <DefaultFooter
-    copyright="2019 蚂蚁金服体验技术部出品"
+    className={styles.footer}
+    copyright="Veppo"
     links={[
       {
-        key: 'Ant Design Pro',
-        title: 'Ant Design Pro',
-        href: 'https://pro.ant.design',
+        key: 'WhatsApp',
+        title: <IconFont type="icon-whatsapp" style={{ color: 'blue' }} />,
+        href: 'https://api.whatsapp.com/send?phone=555180468524&text=&source=&data=',
         blankTarget: true,
       },
       {
-        key: 'github',
-        title: <GithubOutlined />,
-        href: 'https://github.com/ant-design/ant-design-pro',
+        key: 'Twitter',
+        title: <TwitterOutlined />,
+        href: 'https://twitter.com/rodoviariapoa',
         blankTarget: true,
       },
       {
-        key: 'Ant Design',
-        title: 'Ant Design',
-        href: 'https://ant.design',
+        key: 'Instagram',
+        title: <InstagramFilled />,
+        href: 'https://www.instagram.com/rodoviariapoa/',
+        blankTarget: true,
+      },
+      {
+        key: 'Facebook',
+        title: <FacebookFilled />,
+        href: 'https://www.facebook.com/rodoviariapoa/',
+        blankTarget: true,
+      },
+      {
+        key: 'PlayStore',
+        title: <IconFont type="icon-google_play" className={styles.iconsStores} />,
+        href: 'https://play.google.com/store/apps/details?id=veppo.mobile',
+        blankTarget: true,
+      },
+      {
+        key: 'AppStore',
+        title: <IconFont type="icon-app_store" className={styles.iconsStores} />,
+        href: 'https://apps.apple.com/br/app/veppo-rodoviaria-poa/id1182117922',
         blankTarget: true,
       },
     ]}
@@ -64,9 +93,7 @@ const defaultFooterDom = (
 );
 
 const footerRender = () => {
-  if (!isAntDesignPro()) {
-    return defaultFooterDom;
-  }
+  if (!isAntDesignPro()) return defaultFooterDom;
 
   return (
     <>
@@ -143,13 +170,13 @@ const BasicLayout = props => {
 
         return <Link to={menuItemProps.path}>{defaultDom}</Link>;
       }}
-      breadcrumbRender={(routers = []) => [
-        {
-          path: '/',
-          breadcrumbName: '首页',
-        },
-        ...routers,
-      ]}
+      // breadcrumbRender={(routers = []) => [
+      //   {
+      //     path: '/',
+      //     breadcrumbName: '首页',
+      //   },
+      //   ...routers,
+      // ]}
       itemRender={(route, params, routes, paths) => {
         const first = routes.indexOf(route) === 0;
         return first ? (

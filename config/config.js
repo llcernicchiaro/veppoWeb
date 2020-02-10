@@ -96,26 +96,34 @@ export default {
           routes: [
             {
               path: '/',
-              redirect: '/welcome',
+              redirect: '/home',
             },
             {
-              path: '/welcome',
-              name: 'welcome',
-              icon: 'smile',
-              component: './Welcome',
+              path: '/home',
+              name: 'Início',
+              component: './Home',
             },
             {
-              path: '/admin',
-              name: 'admin',
-              icon: 'crown',
+              path: '/services',
+              name: 'Serviços',
               component: './Admin',
               authority: ['admin'],
             },
             {
-              name: 'list.table-list',
-              icon: 'table',
-              path: '/list',
+              path: '/schedules',
+              name: 'Horários de Ônibus',
               component: './ListTableList',
+            },
+            {
+              path: '/ecommerce',
+              name: 'Vendas via Internet',
+              component: './EmptyPage',
+            },
+            {
+              path: '/faq',
+              name: 'FAQ',
+              component: './FAQ',
+              hideInMenu: true,
             },
             {
               component: './404',
@@ -134,6 +142,9 @@ export default {
   // Theme for antd: https://ant.design/docs/react/customize-theme-cn
   theme: {
     // ...darkTheme,
+    'text-color': '#A85400',
+    'primary-color': '#5C0609',
+    'background-color': '#F7EFC1',
   },
   define: {
     ANT_DESIGN_PRO_ONLY_DO_NOT_USE_IN_YOUR_PRODUCTION:
