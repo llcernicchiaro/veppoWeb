@@ -1,5 +1,5 @@
 import { QuestionCircleOutlined } from '@ant-design/icons';
-import { Tooltip } from 'antd';
+// import { Tooltip } from 'antd';
 import React from 'react';
 import { Link } from 'umi';
 import { connect } from 'dva';
@@ -43,11 +43,11 @@ const GlobalHeaderRight = props => {
         //   //console.log('input', value);
         // }}
       /> */}
-      <Tooltip title="Perguntas Frequentes">
-        <Link to="/faq" className={styles.action}>
-          <QuestionCircleOutlined />
-        </Link>
-      </Tooltip>
+
+      <Link to="/faq" className={styles.action}>
+        <QuestionCircleOutlined style={{ marginRight: '6px' }} /> Ajuda
+      </Link>
+
       {/* <Avatar />
       <SelectLang className={styles.action} /> */}
     </div>

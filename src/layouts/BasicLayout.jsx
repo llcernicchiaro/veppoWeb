@@ -19,7 +19,8 @@ import Authorized from '@/utils/Authorized';
 import RightContent from '@/components/GlobalHeader/RightContent';
 import { isAntDesignPro, getAuthorityFromRouter } from '@/utils/utils';
 import styles from './BasicLayout.less';
-import logo from '../assets/logo.png';
+import logotipo from '../assets/logotipo.png';
+import logomarca from '../assets/logomarca.png';
 
 const IconFont = createFromIconfontCN({
   scriptUrl: '//at.alicdn.com/t/font_1630942_0x9qkifitskb.js',
@@ -154,12 +155,12 @@ const BasicLayout = props => {
   };
   return (
     <ProLayout
-      logo={logo}
+      logo={logomarca}
       formatMessage={formatMessage}
       menuHeaderRender={logoDom => (
         <Link to="/">
           {logoDom}
-          {/* {titleDom} */}
+          <img src={logotipo} alt="Logotipo" />
         </Link>
       )}
       onCollapse={handleMenuCollapse}

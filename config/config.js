@@ -20,7 +20,7 @@ const plugins = [
         // default false
         enable: true,
         // default zh-CN
-        default: 'zh-CN',
+        default: 'en-US',
         // default true, when it is true, will use `navigator.language` overwrite default
         baseNavigator: true,
       },
@@ -104,12 +104,6 @@ export default {
               component: './Home',
             },
             {
-              path: '/services',
-              name: 'Serviços',
-              component: './Admin',
-              authority: ['admin'],
-            },
-            {
               path: '/schedules',
               name: 'Horários de Ônibus',
               component: './ListTableList',
@@ -118,6 +112,12 @@ export default {
               path: '/ecommerce',
               name: 'Vendas via Internet',
               component: './EmptyPage',
+            },
+            {
+              path: '/services',
+              name: 'Serviços',
+              component: './Admin',
+              authority: ['admin'],
             },
             {
               path: '/faq',

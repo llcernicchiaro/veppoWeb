@@ -1,29 +1,29 @@
-import { DownOutlined, PlusOutlined } from '@ant-design/icons';
-import { Button, Divider, Dropdown, Menu, message } from 'antd';
+// import { DownOutlined, PlusOutlined } from '@ant-design/icons';
+import { Divider, message } from 'antd';
 import React, { useState, useRef } from 'react';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import ProTable from '@ant-design/pro-table';
 import CreateForm from './components/CreateForm';
 import UpdateForm from './components/UpdateForm';
-import { queryRule, updateRule, addRule, removeRule } from './service';
+import { queryRule, updateRule, addRule } from './service';
 /**
  * 添加节点
  * @param fields
  */
 
 const handleAdd = async fields => {
-  const hide = message.loading('正在添加');
+  const hide = message.loading('Being added');
 
   try {
     await addRule({
       desc: fields.desc,
     });
     hide();
-    message.success('添加成功');
+    message.success('Add a success');
     return true;
   } catch (error) {
     hide();
-    message.error('添加失败请重试！');
+    message.error('Add a failure, please try again!');
     return false;
   }
 };
@@ -33,7 +33,7 @@ const handleAdd = async fields => {
  */
 
 const handleUpdate = async fields => {
-  const hide = message.loading('正在配置');
+  const hide = message.loading('Is the configuration');
 
   try {
     await updateRule({
@@ -42,11 +42,11 @@ const handleUpdate = async fields => {
       key: fields.key,
     });
     hide();
-    message.success('配置成功');
+    message.success('Configuration is successful');
     return true;
   } catch (error) {
     hide();
-    message.error('配置失败请重试！');
+    message.error('Configuration failure, please try again!');
     return false;
   }
 };
@@ -55,23 +55,23 @@ const handleUpdate = async fields => {
  * @param selectedRows
  */
 
-const handleRemove = async selectedRows => {
-  const hide = message.loading('正在删除');
-  if (!selectedRows) return true;
+// const handleRemove = async selectedRows => {
+//   const hide = message.loading('deleting');
+//   if (!selectedRows) return true;
 
-  try {
-    await removeRule({
-      key: selectedRows.map(row => row.key),
-    });
-    hide();
-    message.success('删除成功，即将刷新');
-    return true;
-  } catch (error) {
-    hide();
-    message.error('删除失败，请重试');
-    return false;
-  }
-};
+//   try {
+//     await removeRule({
+//       key: selectedRows.map(row => row.key),
+//     });
+//     hide();
+//     message.success('Deleted successfully, will refresh');
+//     return true;
+//   } catch (error) {
+//     hide();
+//     message.error('Delete failed, please try again!');
+//     return false;
+//   }
+// };
 
 const TableList = () => {
   const [sorter, setSorter] = useState({});
@@ -81,49 +81,49 @@ const TableList = () => {
   const actionRef = useRef();
   const columns = [
     {
-      title: '规则名称',
+      title: 'Empresa',
       dataIndex: 'name',
     },
     {
-      title: '描述',
+      title: 'Linha',
       dataIndex: 'desc',
     },
     {
-      title: '服务调用次数',
+      title: 'Modalidade',
       dataIndex: 'callNo',
       sorter: true,
-      renderText: val => `${val} 万`,
+      renderText: val => `R$ ${val}`,
     },
     {
-      title: '状态',
+      title: 'Hora',
       dataIndex: 'status',
       valueEnum: {
         0: {
-          text: '关闭',
+          text: 'Shut down',
           status: 'Default',
         },
         1: {
-          text: '运行中',
+          text: 'In the operation of the',
           status: 'Processing',
         },
         2: {
-          text: '已上线',
+          text: 'Has been launched',
           status: 'Success',
         },
         3: {
-          text: '异常',
+          text: 'abnormal',
           status: 'Error',
         },
       },
     },
     {
-      title: '上次调度时间',
+      title: 'Frequência',
       dataIndex: 'updatedAt',
       sorter: true,
       valueType: 'dateTime',
     },
     {
-      title: '操作',
+      title: 'Valor com Seguro',
       dataIndex: 'option',
       valueType: 'option',
       render: (_, record) => (
@@ -134,18 +134,36 @@ const TableList = () => {
               setStepFormValues(record);
             }}
           >
-            配置
+            configuration
           </a>
           <Divider type="vertical" />
-          <a href="">订阅警报</a>
+          <a href="">Subscribe to alerts</a>
         </>
       ),
+    },
+    {
+      title: 'Valor sem Seguro',
+      dataIndex: 'updatedAt',
+      sorter: true,
+      valueType: 'time',
+    },
+    {
+      title: 'Km',
+      dataIndex: 'updatedAt',
+      sorter: true,
+      valueType: 'time',
+    },
+    {
+      title: 'Tempo Estimado',
+      dataIndex: 'updatedAt',
+      sorter: true,
+      valueType: 'time',
     },
   ];
   return (
     <PageHeaderWrapper>
       <ProTable
-        headerTitle="查询表格"
+        headerTitle="Form de consulta"
         actionRef={actionRef}
         rowKey="key"
         onChange={(_, _filter, _sorter) => {
@@ -154,52 +172,54 @@ const TableList = () => {
         params={{
           sorter,
         }}
-        toolBarRender={(action, { selectedRows }) => [
-          <Button type="primary" onClick={() => handleModalVisible(true)}>
-            <PlusOutlined /> 新建
-          </Button>,
-          selectedRows && selectedRows.length > 0 && (
-            <Dropdown
-              overlay={
-                <Menu
-                  onClick={async e => {
-                    if (e.key === 'remove') {
-                      await handleRemove(selectedRows);
-                      action.reload();
-                    }
-                  }}
-                  selectedKeys={[]}
-                >
-                  <Menu.Item key="remove">批量删除</Menu.Item>
-                  <Menu.Item key="approval">批量审批</Menu.Item>
-                </Menu>
-              }
-            >
-              <Button>
-                批量操作 <DownOutlined />
-              </Button>
-            </Dropdown>
-          ),
-        ]}
-        tableAlertRender={(selectedRowKeys, selectedRows) => (
-          <div>
-            已选择{' '}
-            <a
-              style={{
-                fontWeight: 600,
-              }}
-            >
-              {selectedRowKeys.length}
-            </a>{' '}
-            项&nbsp;&nbsp;
-            <span>
-              服务调用次数总计 {selectedRows.reduce((pre, item) => pre + item.callNo, 0)} 万
-            </span>
-          </div>
-        )}
+        // toolBarRender={(action, { selectedRows }) => [
+        //   <Button type="primary" onClick={() => handleModalVisible(true)}>
+        //     <PlusOutlined /> new
+        //   </Button>,
+        //   selectedRows && selectedRows.length > 0 && (
+        //     <Dropdown
+        //       overlay={
+        //         <Menu
+        //           onClick={async e => {
+        //             if (e.key === 'remove') {
+        //               await handleRemove(selectedRows);
+        //               action.reload();
+        //             }
+        //           }}
+        //           selectedKeys={[]}
+        //         >
+        //           <Menu.Item key="remove">Remove</Menu.Item>
+        //           <Menu.Item key="approval">approval</Menu.Item>
+        //         </Menu>
+        //       }
+        //     >
+        //       <Button>
+        //         The batch operation <DownOutlined />
+        //       </Button>
+        //     </Dropdown>
+        //   ),
+        // ]}
+        // tableAlertRender={(selectedRowKeys, selectedRows) => (
+        //   <div>
+        //     Has chosen{' '}
+        //     <a
+        //       style={{
+        //         fontWeight: 600,
+        //       }}
+        //     >
+        //       {selectedRowKeys.length}
+        //     </a>{' '}
+        //     item&nbsp;&nbsp;
+        //     <span>
+        //       Service call number in total{' '}
+        //       R$ {selectedRows.reduce((pre, item) => pre + item.callNo, 0)}
+        //     </span>
+        //   </div>
+        // )}
         request={params => queryRule(params)}
         columns={columns}
-        rowSelection={{}}
+        // rowSelection={{}}
+        options={{ fullScreen: false, reload: false, setting: false }}
       />
       <CreateForm
         onSubmit={async value => {

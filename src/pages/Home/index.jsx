@@ -17,9 +17,11 @@ import styles from './index.less';
 
 const HomePage = ({ currentUser }) => (
   <div>
+    <div className={styles.container}>
+      <FastSearch />
+    </div>
     <img src={currentUser.name ? userHeader : visitorHeader} alt="Header" width="100%" />
     <div>
-      <FastSearch />
       <div className={styles.container}>
         <h1>Nossa Missão</h1>
         <span>
