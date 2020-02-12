@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
-// import { SearchOutlined } from '@ant-design/icons';
-import { Button, Form, Modal, Select, TimePicker } from 'antd';
-// import useMergeValue from 'use-merge-value';
-// import classNames from 'classnames';
-// import styles from './index.less';
+import { Button, Card, Form, List, Modal, Select, TimePicker } from 'antd';
+import companies from './companies';
+import styles from './index.less';
 
 const HeaderSearch = () => {
   const [modalOpen, setModalOpen] = useState(false);
-
-  // const { number } = props;
   const FormItem = Form.Item;
   const { Option } = Select;
+  const { Meta } = Card;
+
   return (
     <div>
       <h1>Planeje sua próxima viagem</h1>
@@ -68,9 +66,29 @@ const HeaderSearch = () => {
         onCancel={() => setModalOpen(false)}
         footer={false}
       >
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
+        <List
+          grid={{ gutter: 8, column: 2 }}
+          dataSource={companies}
+          renderItem={item => (
+            <List.Item>
+              <a href={item.href} target="_blank" rel="noopener noreferrer">
+                <Card
+                  className={styles.companieCard}
+                  hoverable
+                  cover={
+                    <img
+                      alt={item.alt}
+                      src={item.src}
+                      style={{ width: 'auto', maxWidth: '100%', maxHeight: '100%' }}
+                    />
+                  }
+                >
+                  <Meta title={item.alt} />
+                </Card>
+              </a>
+            </List.Item>
+          )}
+        />
       </Modal>
     </div>
   );
