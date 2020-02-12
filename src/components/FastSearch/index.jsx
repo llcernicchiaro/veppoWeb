@@ -16,7 +16,7 @@ const HeaderSearch = () => {
         <FormItem label="">
           <Select
             showSearch
-            style={{ width: 230 }}
+            style={{ width: 225 }}
             placeholder="De Porto Alegre para"
             optionFilterProp="children"
             size="large"
@@ -27,12 +27,13 @@ const HeaderSearch = () => {
             <Option value="SJ">São Jerônimo</Option>
             <Option value="CH">Charqueadas</Option>
             <Option value="Canoas">Canoas</Option>
+            <Option value="SSC">São Sebastião do Caí</Option>
           </Select>
         </FormItem>
         <FormItem label="">
           <Select
             defaultValue="SJ"
-            style={{ width: 230 }}
+            style={{ width: 225 }}
             placeholder="Dia da semana"
             optionFilterProp="children"
             size="large"
@@ -47,7 +48,7 @@ const HeaderSearch = () => {
             placeholder="Horário inicial"
             format="HH:00"
             size="large"
-            style={{ width: 230 }}
+            style={{ width: 225 }}
           />
         </FormItem>
         <FormItem>

@@ -3,8 +3,8 @@ import { connect } from 'dva';
 // import { PageHeaderWrapper } from '@ant-design/pro-layout';
 // import { Card, Typography, Alert } from 'antd';
 import FastSearch from '../../components/FastSearch';
-import userHeader from '../../assets/header2.png';
-import visitorHeader from '../../assets/header.png';
+import userHeader from '../../assets/header.png';
+import visitorHeader from '../../assets/header2.png';
 import styles from './index.less';
 
 // const CodePreview = ({ children }) => (
