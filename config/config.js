@@ -106,7 +106,7 @@ export default {
             {
               path: '/schedules',
               name: 'Horários de Ônibus',
-              component: './ListTableList',
+              component: './Schedules',
             },
             {
               path: '/ecommerce',

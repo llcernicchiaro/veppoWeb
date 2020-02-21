@@ -169,7 +169,11 @@ const BasicLayout = props => {
           return defaultDom;
         }
 
-        return <Link to={menuItemProps.path}>{defaultDom}</Link>;
+        return (
+          <Link className={styles.menuLink} to={menuItemProps.path}>
+            {defaultDom}
+          </Link>
+        );
       }}
       // breadcrumbRender={(routers = []) => [
       //   {

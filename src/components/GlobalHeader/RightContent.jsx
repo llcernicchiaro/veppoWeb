@@ -4,7 +4,7 @@ import React from 'react';
 import { Link } from 'umi';
 import { connect } from 'dva';
 // import Avatar from './AvatarDropdown';
-// import HeaderSearch from '../HeaderSearch';
+import HeaderSearch from '../HeaderSearch';
 // import SelectLang from '../SelectLang';
 import styles from './index.less';
 
@@ -18,7 +18,7 @@ const GlobalHeaderRight = props => {
 
   return (
     <div className={className}>
-      {/* <HeaderSearch
+      <HeaderSearch
         className={`${styles.action} ${styles.search}`}
         placeholder="站内搜索"
         defaultValue="umi ui"
@@ -42,12 +42,10 @@ const GlobalHeaderRight = props => {
         ]} // onSearch={value => {
         //   //console.log('input', value);
         // }}
-      /> */}
-
+      />{' '}
       <Link to="/faq" className={styles.action}>
-        <QuestionCircleOutlined style={{ marginRight: '6px' }} /> Ajuda
+        <QuestionCircleOutlined /> Ajuda
       </Link>
-
       {/* <Avatar />
       <SelectLang className={styles.action} /> */}
     </div>
