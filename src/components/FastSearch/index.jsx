@@ -1,19 +1,44 @@
 import React, { useState } from 'react';
 import { Button, Card, Form, List, Modal, Select, TimePicker } from 'antd';
+import { connect } from 'dva';
 import companies from './companies';
 import styles from './index.less';
 
-const HeaderSearch = () => {
+const FastSearch = props => {
   const [modalOpen, setModalOpen] = useState(false);
+  const [form] = Form.useForm();
   const FormItem = Form.Item;
   const { Option } = Select;
   const { Meta } = Card;
 
+  const onFinish = values => {
+    const { dispatch } = props;
+    dispatch({
+      type: 'schedules/fetchSchedules',
+      payload: { ...values, horario: values.horario.format('HH:mm') },
+    });
+  };
+
+  const onFinishFailed = errorInfo => {
+    console.log('Failed:', errorInfo);
+  };
+
   return (
     <div>
       <h1>Planeje sua próxima viagem</h1>
-      <Form layout="inline">
-        <FormItem label="">
+      <Form
+        name="basic"
+        form={form}
+        layout="inline"
+        onFinish={onFinish}
+        onFinishFailed={onFinishFailed}
+        initialValues={{ dia: 'SJ' }}
+      >
+        <FormItem
+          label=""
+          name="destino"
+          rules={[{ required: true, message: 'Please input your username!' }]}
+        >
           <Select
             showSearch
             style={{ width: 225 }}
@@ -30,9 +55,12 @@ const HeaderSearch = () => {
             <Option value="SSC">São Sebastião do Caí</Option>
           </Select>
         </FormItem>
-        <FormItem label="">
+        <FormItem
+          label=""
+          name="dia"
+          rules={[{ required: true, message: 'Please input your username!' }]}
+        >
           <Select
-            defaultValue="SJ"
             style={{ width: 225 }}
             placeholder="Dia da semana"
             optionFilterProp="children"
@@ -43,7 +71,11 @@ const HeaderSearch = () => {
             <Option value="Canoas">Segunda</Option>
           </Select>
         </FormItem>
-        <FormItem label="">
+        <FormItem
+          label=""
+          name="horario"
+          rules={[{ required: true, message: 'Please input your username!' }]}
+        >
           <TimePicker
             placeholder="Horário inicial"
             format="HH:00"
@@ -52,7 +84,7 @@ const HeaderSearch = () => {
           />
         </FormItem>
         <FormItem>
-          <Button type="primary" size="large">
+          <Button type="primary" htmlType="submit" size="large">
             Consultar Horários
           </Button>
         </FormItem>
@@ -94,5 +126,4 @@ const HeaderSearch = () => {
     </div>
   );
 };
-
-export default HeaderSearch;
+export default connect()(FastSearch);
