@@ -16,7 +16,7 @@ const CreateForm = props => {
   return (
     <Modal
       destroyOnClose
-      title="新建规则"
+      title="The new rules"
       visible={modalVisible}
       onOk={okHandle}
       onCancel={() => onCancel()}
@@ -29,17 +29,17 @@ const CreateForm = props => {
           wrapperCol={{
             span: 15,
           }}
-          label="描述"
+          label="description"
           name="desc"
           rules={[
             {
               required: true,
-              message: '请输入至少五个字符的规则描述！',
+              message: 'Please enter a description rules for at least five characters!',
               min: 5,
             },
           ]}
         >
-          <Input placeholder="请输入" />
+          <Input placeholder="Please enter the" />
         </FormItem>
       </Form>
     </Modal>

@@ -1,10 +1,11 @@
 import { QuestionCircleOutlined } from '@ant-design/icons';
-import { Tooltip } from 'antd';
+// import { Tooltip } from 'antd';
 import React from 'react';
+import { Link } from 'umi';
 import { connect } from 'dva';
-import Avatar from './AvatarDropdown';
-import HeaderSearch from '../HeaderSearch';
-import SelectLang from '../SelectLang';
+// import Avatar from './AvatarDropdown';
+// import HeaderSearch from '../HeaderSearch';
+// import SelectLang from '../SelectLang';
 import styles from './index.less';
 
 const GlobalHeaderRight = props => {
@@ -17,7 +18,7 @@ const GlobalHeaderRight = props => {
 
   return (
     <div className={className}>
-      <HeaderSearch
+      {/* <HeaderSearch
         className={`${styles.action} ${styles.search}`}
         placeholder="站内搜索"
         defaultValue="umi ui"
@@ -41,19 +42,14 @@ const GlobalHeaderRight = props => {
         ]} // onSearch={value => {
         //   //console.log('input', value);
         // }}
-      />
-      <Tooltip title="使用文档">
-        <a
-          target="_blank"
-          href="https://pro.ant.design/docs/getting-started"
-          rel="noopener noreferrer"
-          className={styles.action}
-        >
-          <QuestionCircleOutlined />
-        </a>
-      </Tooltip>
-      <Avatar />
-      <SelectLang className={styles.action} />
+      /> */}
+
+      <Link to="/faq" className={styles.action}>
+        <QuestionCircleOutlined style={{ marginRight: '6px' }} /> Ajuda
+      </Link>
+
+      {/* <Avatar />
+      <SelectLang className={styles.action} /> */}
     </div>
   );
 };
