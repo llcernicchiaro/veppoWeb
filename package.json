@@ -36,6 +36,7 @@
   "lint-staged": {
     "**/*.less": [
       "stylelint --fix \"src/**/*.less\" --syntax less",
+      "git add",
       "stylelint --syntax less"
     ],
     "**/*.{js,jsx,ts,tsx}": "npm run lint-staged:js",
