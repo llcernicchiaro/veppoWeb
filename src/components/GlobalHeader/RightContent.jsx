@@ -3,7 +3,7 @@ import { QuestionCircleOutlined } from '@ant-design/icons';
 import React from 'react';
 import { Link } from 'umi';
 import { connect } from 'dva';
-// import Avatar from './AvatarDropdown';
+import Avatar from './AvatarDropdown';
 import HeaderSearch from '../HeaderSearch';
 // import SelectLang from '../SelectLang';
 import styles from './index.less';
@@ -46,8 +46,8 @@ const GlobalHeaderRight = props => {
       <Link to="/faq" className={styles.action}>
         <QuestionCircleOutlined /> Ajuda
       </Link>
-      {/* <Avatar />
-      <SelectLang className={styles.action} /> */}
+      <Avatar />
+      {/* <SelectLang className={styles.action} /> */}
     </div>
   );
 };

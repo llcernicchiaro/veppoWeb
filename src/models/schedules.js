@@ -7,7 +7,7 @@ import { fakeSchedulesList } from '@/services/schedules';
 const Model = {
   namespace: 'schedules',
   state: {
-    list: [],
+    list: undefined,
   },
   effects: {
     *fetchSchedules({ payload }, { call, put }) {
@@ -27,7 +27,7 @@ const Model = {
   },
   reducers: {
     saveSchedules(state, { payload }) {
-      return { ...state, list: payload.list };
+      return { ...state, list: payload };
     },
   },
 };

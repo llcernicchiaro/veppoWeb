@@ -4,6 +4,12 @@ import { connect } from 'dva';
 import companies from './companies';
 import styles from './index.less';
 
+const inputStyles = {
+  width: '100%',
+  minWidth: 150,
+  maxWidth: 235,
+};
+
 const FastSearch = props => {
   const [modalOpen, setModalOpen] = useState(false);
   const [form] = Form.useForm();
@@ -27,24 +33,25 @@ const FastSearch = props => {
     <div>
       <h1>Planeje sua próxima viagem</h1>
       <Form
-        name="basic"
         form={form}
         layout="inline"
+        name="basic"
+        size="large"
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
         initialValues={{ dia: 'SJ' }}
+        style={{ justifyContent: 'space-between' }}
       >
         <FormItem
           label=""
           name="destino"
+          style={inputStyles}
           rules={[{ required: true, message: 'Please input your username!' }]}
         >
           <Select
             showSearch
-            style={{ width: 225 }}
             placeholder="De Porto Alegre para"
             optionFilterProp="children"
-            size="large"
             filterOption={(input, option) =>
               option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
             }
@@ -58,14 +65,10 @@ const FastSearch = props => {
         <FormItem
           label=""
           name="dia"
+          style={inputStyles}
           rules={[{ required: true, message: 'Please input your username!' }]}
         >
-          <Select
-            style={{ width: 225 }}
-            placeholder="Dia da semana"
-            optionFilterProp="children"
-            size="large"
-          >
+          <Select placeholder="Dia da semana" optionFilterProp="children">
             <Option value="SJ">Qualquer dia</Option>
             <Option value="CH">Domingo</Option>
             <Option value="Canoas">Segunda</Option>
@@ -74,21 +77,17 @@ const FastSearch = props => {
         <FormItem
           label=""
           name="horario"
+          style={inputStyles}
           rules={[{ required: true, message: 'Please input your username!' }]}
         >
-          <TimePicker
-            placeholder="Horário inicial"
-            format="HH:00"
-            size="large"
-            style={{ width: 225 }}
-          />
+          <TimePicker placeholder="Horário inicial" format="HH:00" style={inputStyles} />
         </FormItem>
         <FormItem>
-          <Button type="primary" htmlType="submit" size="large">
+          <Button type="primary" htmlType="submit">
             Consultar Horários
           </Button>
         </FormItem>
-        <Button type="secondary" onClick={() => setModalOpen(true)} size="large">
+        <Button type="secondary" onClick={() => setModalOpen(true)}>
           Outras Linhas
         </Button>
       </Form>

@@ -111,7 +111,7 @@ export default {
             {
               path: '/ecommerce',
               name: 'Vendas via Internet',
-              component: './EmptyPage',
+              component: './Ecommerce',
             },
             {
               path: '/services',
