@@ -2,7 +2,6 @@ import React from 'react';
 import { Empty, Table } from 'antd';
 import { connect } from 'dva';
 import columns from './columns';
-// import styles from './index.less';
 
 const EcommerceTable = props => {
   const { list } = props;

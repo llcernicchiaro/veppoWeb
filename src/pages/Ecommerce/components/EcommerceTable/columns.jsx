@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button } from 'antd';
+import { Link } from 'umi';
 
 export default [
   {
@@ -25,26 +26,22 @@ export default [
     title: 'Assentos',
     dataIndex: 'assentos',
     align: 'center',
+    render: text => <strong>{text}</strong>,
   },
   {
-    title: 'Valores',
-    children: [
-      {
-        title: 'Sem Seguro',
-        dataIndex: 'valorSemSeg',
-        align: 'center',
-      },
-      {
-        title: 'Com Seguro',
-        dataIndex: 'valorComSeg',
-        align: 'center',
-      },
-      {
-        title: 'Valor Promocional',
-        dataIndex: 'valorComSeg',
-        align: 'center',
-      },
-    ],
+    title: 'Valor s/ Seguro',
+    dataIndex: 'valorSemSeg',
+    align: 'center',
+  },
+  {
+    title: 'Valor c/ Seguro',
+    dataIndex: 'valorComSeg',
+    align: 'center',
+  },
+  {
+    title: 'Valor Promocional',
+    dataIndex: 'valorComSeg',
+    align: 'center',
   },
   {
     title: 'Tempo Estimado',
@@ -53,6 +50,10 @@ export default [
   },
   {
     title: '',
-    render: () => <Button type="primary">Comprar</Button>,
+    render: bus => (
+      <Link to={`/buy?id=${bus.id}`}>
+        <Button type="primary">Comprar</Button>
+      </Link>
+    ),
   },
 ];
