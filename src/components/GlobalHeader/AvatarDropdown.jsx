@@ -1,4 +1,9 @@
-import { LogoutOutlined, SettingOutlined, UserOutlined } from '@ant-design/icons';
+import {
+  DollarOutlined,
+  FileTextOutlined,
+  LogoutOutlined,
+  SettingOutlined,
+} from '@ant-design/icons';
 import { Avatar, Menu, Spin } from 'antd';
 import React from 'react';
 import { connect } from 'dva';
@@ -33,26 +38,32 @@ class AvatarDropdown extends React.Component {
       },
     } = this.props;
     const menuHeaderDropdown = (
-      <Menu className={styles.menu} selectedKeys={[]} onClick={this.onMenuClick}>
-        {/* {menu && ( */}
-        <Menu.Item key="center">
-          <UserOutlined />
-          Personal center
-        </Menu.Item>
-        {/* )} */}
-        {/* {menu && ( */}
-        <Menu.Item key="settings">
-          <SettingOutlined />
-          Personal Settings
-        </Menu.Item>
-        {/* )} */}
-        <Menu.Divider />
-
-        <Menu.Item key="logout">
-          <LogoutOutlined />
-          Log out
-        </Menu.Item>
-      </Menu>
+      <div>
+        <div className={styles.balance}>
+          <span>Seu saldo é</span>
+          <span className={styles.price}>R$ 45,00</span>
+        </div>
+        <Menu className={styles.menu} selectedKeys={[]} onClick={this.onMenuClick}>
+          <Menu.Divider />
+          <Menu.Item key="center">
+            <DollarOutlined />
+            Aviso de Depósito
+          </Menu.Item>
+          <Menu.Item key="center">
+            <FileTextOutlined />
+            Extrato
+          </Menu.Item>
+          <Menu.Item key="settings">
+            <SettingOutlined />
+            Alterar Cadastro
+          </Menu.Item>
+          <Menu.Divider />
+          <Menu.Item key="logout">
+            <LogoutOutlined />
+            Sair
+          </Menu.Item>
+        </Menu>
+      </div>
     );
     return currentUser && currentUser.name ? (
       <HeaderDropdown overlay={menuHeaderDropdown}>
