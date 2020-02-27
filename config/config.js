@@ -126,6 +126,12 @@ export default {
               hideInMenu: true,
             },
             {
+              name: 'Buy Ticket',
+              path: '/buy',
+              component: './Buy',
+              hideInMenu: true,
+            },
+            {
               component: './404',
             },
           ],
