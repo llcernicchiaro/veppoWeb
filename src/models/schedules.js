@@ -18,7 +18,7 @@ const Model = {
         payload: response,
       });
 
-      if (window.location.pathname !== '/schedules')
+      if (window.location.pathname === '/home')
         router.replace({
           pathname: '/schedules',
           search: stringify(payload),

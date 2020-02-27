@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { connect, router } from 'dva';
 import { Spin } from 'antd';
-import EcommerceSearch from '@/components/EcommerceSearch';
-import EcommerceTable from './EcommerceTable';
-// import styles from './index.less';
+import EcommerceSearch from './components/EcommerceSearch';
+import EcommerceTable from './components/EcommerceTable';
 
 const Ecommerce = ({ currentUser }) => {
   const [loading, setLoading] = useState(true);

@@ -5,6 +5,7 @@ export default [
   {
     title: 'Empresa',
     dataIndex: 'empresa',
+    align: 'center',
   },
   {
     title: 'Linha',
@@ -13,10 +14,12 @@ export default [
   {
     title: 'Modalidade',
     dataIndex: 'modalidade',
+    align: 'center',
   },
   {
     title: 'Hora',
     dataIndex: 'hora',
+    align: 'center',
   },
   {
     title: 'Frequência',
@@ -38,19 +41,24 @@ export default [
     ),
   },
   {
-    title: 'Valor s/ Seg',
+    title: 'Valor s/ Seguro',
     dataIndex: 'valorSemSeg',
+    align: 'center',
   },
   {
-    title: 'Valor c/ Seg',
+    title: 'Valor c/ Seguro',
     dataIndex: 'valorComSeg',
+    align: 'center',
   },
   {
-    title: 'Km',
+    title: 'Distância',
     dataIndex: 'km',
+    render: text => `${text}km`,
+    align: 'center',
   },
   {
     title: 'Tempo Estimado',
     dataIndex: 'tempo',
+    align: 'center',
   },
 ];
