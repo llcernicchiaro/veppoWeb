@@ -1,12 +1,12 @@
-import { AlipayCircleOutlined, TaobaoCircleOutlined, WeiboCircleOutlined } from '@ant-design/icons';
-import { Alert, Checkbox } from 'antd';
+// import { AlipayCircleOutlined, TaobaoCircleOutlined, WeiboCircleOutlined } from '@ant-design/icons';
+import { Alert, Button, Checkbox } from 'antd';
 import React, { useState } from 'react';
 import { Link } from 'umi';
 import { connect } from 'dva';
 import styles from './style.less';
 import LoginFrom from './components/Login';
 
-const { UserName, Password, Submit } = LoginFrom;
+const { UserName, Password, Submit, Tab } = LoginFrom;
 
 const LoginMessage = ({ content }) => (
   <Alert
@@ -36,84 +36,79 @@ const Login = props => {
   return (
     <div className={styles.main}>
       <LoginFrom activeKey={type} onTabChange={setType} onSubmit={handleSubmit}>
-        {/* <Tab key="account" tab="账户密码登录"> */}
-        {status === 'error' && loginType === 'account' && !submitting && (
-          <LoginMessage content="账户或密码错误（admin/ant.design）" />
-        )}
-
-        <UserName
-          name="userName"
-          placeholder="用户名: admin or user"
-          rules={[
-            {
-              required: true,
-              message: '请输入用户名!',
-            },
-          ]}
-        />
-        <Password
-          name="password"
-          placeholder="密码: ant.design"
-          rules={[
-            {
-              required: true,
-              message: '请输入密码！',
-            },
-          ]}
-        />
-        {/* </Tab> */}
-        {/* <Tab key="mobile" tab="手机号登录">
-          {status === 'error' && loginType === 'mobile' && !submitting && (
-            <LoginMessage content="验证码错误" />
+        <Tab key="account" tab="CPF">
+          {status === 'error' && loginType === 'account' && !submitting && (
+            <LoginMessage content="Account or password error（admin/ant.design）" />
           )}
-          <Mobile
-            name="mobile"
-            placeholder="手机号"
+          <UserName
+            name="userName"
+            placeholder="Username: admin or user"
             rules={[
               {
                 required: true,
-                message: '请输入手机号！',
-              },
-              {
-                pattern: /^1\d{10}$/,
-                message: '手机号格式错误！',
+                message: '请输入用户名!',
               },
             ]}
           />
-          <Captcha
-            name="captcha"
-            placeholder="验证码"
-            countDown={120}
-            getCaptchaButtonText=""
-            getCaptchaSecondText="秒"
+          <Password
+            name="password"
+            placeholder="Password: ant.design"
             rules={[
               {
                 required: true,
-                message: '请输入验证码！',
+                message: '请输入密码！',
               },
             ]}
           />
-        </Tab> */}
+        </Tab>
+        <Tab key="mobile" tab="CNPJ">
+          {status === 'error' && loginType === 'mobile' && !submitting && (
+            <LoginMessage content="Verification code error" />
+          )}
+          <UserName
+            name="userName"
+            placeholder="Username: admin or user"
+            rules={[
+              {
+                required: true,
+                message: '请输入用户名!',
+              },
+            ]}
+          />
+          <Password
+            name="password"
+            placeholder="Password: ant.design"
+            rules={[
+              {
+                required: true,
+                message: '请输入密码！',
+              },
+            ]}
+          />
+        </Tab>
         <div>
           <Checkbox checked={autoLogin} onChange={e => setAutoLogin(e.target.checked)}>
-            Automatic login
+            Login automático
           </Checkbox>
           <a
             style={{
               float: 'right',
             }}
           >
-            Forgot password
+            Esqueci minha Senha
           </a>
         </div>
         <Submit loading={submitting}>LOGIN</Submit>
         <div className={styles.other}>
-          Other login
-          <AlipayCircleOutlined className={styles.icon} />
+          {/* Other login */}
+          {/* <AlipayCircleOutlined className={styles.icon} />
           <TaobaoCircleOutlined className={styles.icon} />
-          <WeiboCircleOutlined className={styles.icon} />
+          <WeiboCircleOutlined className={styles.icon} /> */}
           <Link className={styles.register} to="/user/register">
-            Sign up for an account
+            {/* Cadastre-se */}
+            <Button type="secondary" size="large">
+              Cadastre-se
+            </Button>
           </Link>
         </div>
       </LoginFrom>
