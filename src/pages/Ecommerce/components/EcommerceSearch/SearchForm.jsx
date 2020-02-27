@@ -1,21 +1,19 @@
-import React, { useState } from 'react';
-import { Button, Card, Form, List, Modal, Select, TimePicker } from 'antd';
+import React from 'react';
+import { Button, DatePicker, Form, Select, TimePicker } from 'antd';
 import { connect } from 'dva';
-import companies from './companies';
-import styles from './index.less';
+import moment from 'moment';
 
 const inputStyles = {
   width: '100%',
   minWidth: 150,
-  maxWidth: 235,
+  maxWidth: 260,
 };
 
-const FastSearch = props => {
-  const [modalOpen, setModalOpen] = useState(false);
+const SearchForm = props => {
   const [form] = Form.useForm();
   const FormItem = Form.Item;
   const { Option } = Select;
-  const { Meta } = Card;
+  const { capital } = props;
 
   const onFinish = values => {
     const { dispatch } = props;
@@ -25,32 +23,30 @@ const FastSearch = props => {
     });
   };
 
-  const onFinishFailed = errorInfo => {
-    console.log('Failed:', errorInfo);
-  };
+  // const onFinishFailed = errorInfo => {
+  //   // console.log('Failed:', errorInfo);
+  // };
 
   return (
     <div>
-      <h1>Planeje sua próxima viagem</h1>
       <Form
         form={form}
         layout="inline"
         name="basic"
         size="large"
         onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
-        initialValues={{ dia: 'SJ' }}
+        // onFinishFailed={onFinishFailed}
         style={{ justifyContent: 'space-between' }}
       >
         <FormItem
           label=""
-          name="destino"
+          name={capital ? 'destino' : 'origem'}
           style={inputStyles}
           rules={[{ required: true, message: 'Please input your username!' }]}
         >
           <Select
             showSearch
-            placeholder="De Porto Alegre para"
+            placeholder={capital ? 'Escolha o Destino' : 'Escolha a Origem'}
             optionFilterProp="children"
             filterOption={(input, option) =>
               option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
@@ -68,11 +64,11 @@ const FastSearch = props => {
           style={inputStyles}
           rules={[{ required: true, message: 'Please input your username!' }]}
         >
-          <Select placeholder="Dia da semana" optionFilterProp="children">
-            <Option value="SJ">Qualquer dia</Option>
-            <Option value="CH">Domingo</Option>
-            <Option value="Canoas">Segunda</Option>
-          </Select>
+          <DatePicker
+            disabledDate={current => current && current < moment().startOf('day')}
+            format="DD/MM/YYYY"
+            style={inputStyles}
+          />
         </FormItem>
         <FormItem
           label=""
@@ -84,45 +80,13 @@ const FastSearch = props => {
         </FormItem>
         <FormItem>
           <Button type="primary" htmlType="submit">
-            Consultar Horários
+            Verificar Ônibus Disponíveis
           </Button>
         </FormItem>
-        <Button type="secondary" onClick={() => setModalOpen(true)}>
-          Outras Linhas
-        </Button>
       </Form>
       <small>Alterações podem ocorrer por cancelamento ou inclusão de novos horários.</small>
-      <Modal
-        title="Linhas Internacionais e Interestaduais"
-        visible={modalOpen}
-        onCancel={() => setModalOpen(false)}
-        footer={false}
-      >
-        <List
-          grid={{ gutter: 8, column: 2 }}
-          dataSource={companies}
-          renderItem={item => (
-            <List.Item>
-              <a href={item.href} target="_blank" rel="noopener noreferrer">
-                <Card
-                  className={styles.companieCard}
-                  hoverable
-                  cover={
-                    <img
-                      alt={item.alt}
-                      src={item.src}
-                      style={{ width: 'auto', maxWidth: '100%', maxHeight: '100%' }}
-                    />
-                  }
-                >
-                  <Meta title={item.alt} />
-                </Card>
-              </a>
-            </List.Item>
-          )}
-        />
-      </Modal>
     </div>
   );
 };
-export default connect()(FastSearch);
+
+export default connect()(SearchForm);

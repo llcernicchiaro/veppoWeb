@@ -106,12 +106,12 @@ export default {
             {
               path: '/schedules',
               name: 'Horários de Ônibus',
-              component: './ListTableList',
+              component: './Schedules',
             },
             {
               path: '/ecommerce',
               name: 'Vendas via Internet',
-              component: './EmptyPage',
+              component: './Ecommerce',
             },
             {
               path: '/services',
@@ -123,6 +123,12 @@ export default {
               path: '/faq',
               name: 'FAQ',
               component: './FAQ',
+              hideInMenu: true,
+            },
+            {
+              name: 'Buy Ticket',
+              path: '/buy',
+              component: './Buy',
               hideInMenu: true,
             },
             {

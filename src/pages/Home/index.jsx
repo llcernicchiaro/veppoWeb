@@ -2,10 +2,10 @@ import React from 'react';
 import { connect } from 'dva';
 // import { PageHeaderWrapper } from '@ant-design/pro-layout';
 // import { Card, Typography, Alert } from 'antd';
-import FastSearch from '../../components/FastSearch';
-import userHeader from '../../assets/header.png';
-import visitorHeader from '../../assets/header2.png';
-import styles from './index.less';
+import FastSearch from '@/components/FastSearch';
+import userHeader from '@/assets/header.png';
+import visitorHeader from '@/assets/header2.png';
+// import styles from './index.less';
 
 // const CodePreview = ({ children }) => (
 //   <pre className={styles.pre}>
@@ -17,12 +17,12 @@ import styles from './index.less';
 
 const HomePage = ({ currentUser }) => (
   <div>
-    <div className={styles.container}>
+    <div className="container">
       <FastSearch />
     </div>
     <img src={currentUser.name ? userHeader : visitorHeader} alt="Header" width="100%" />
     <div>
-      <div className={styles.container}>
+      <div className="container">
         <h1>Nossa Missão</h1>
         <span>
           Prestar serviço de forma pioneira no ramo de transportes, visando satisfazer a sociedade
